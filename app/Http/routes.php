@@ -11,18 +11,60 @@
 |
 */
 
-// Route::get('/', 'WelcomeController@index');
+Route::get('/', 'HomeController@role');
 
-Route::get('home', 'HomeController@index');
+Route::get('pemohon/form','FormIzinController@getForm');
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
-Route::get('/', function()
-{
-    return view('index');
+Route::get('pemohon/form/perpanjangan', 'PerpanjanganController@index');
+
+Route::get('pemohon/form/perpanjangan/{jenis}/{id}', 'PerpanjanganController@getForm');
+
+Route::get('pemohon/form/permohonanbatal', 'PermohonanBatalController@getform');
+
+Route::get('pemohon/form/aduanpenolakan', 'AduanPenolakanController@getform');
+
+Route::get('pemohon/lihat', 'DaftarIzinController@index');
+
+Route::get('pemohon/form/new/{id}','FormIzinController@getFormNew');
+
+Route::post('pemohon/form/new/{id}','FormIzinController@postFormNew');
+
+Route::get('pemohon/daftarizin/{id}', 'DaftarIzinController@getallizin');
+
+Route::get('pemohon/persyaratan', function() {
+	return View::make('pemohon.persyaratan');
 });
-Route::get('form','FormIzinController@getForm');
-Route::post('form','FormIzinController@postForm');
-// Route::
+
+Route::get('pemohon/tentang', function() {
+	return View::make('pemohon.tentang');
+});
+
+Route::get('pemohon/kontak', function() {
+	return View::make('pemohon.kontak');
+});
+
+Route::get('pemohon/perpanjangan', function() {
+	return View::make('pemohon.form.perpanjangan');
+});
+
+Route::get('pemohon/batal/{jenis}/{id}', 'PermohonanBatalController@cancel');
+
+Route::get('admin/manajemen', function() {
+	return View::make('admin.manajemen');
+});
+
+Route::get('pegawai/lihat', function() {
+	return View::make('pegawai.lihat');
+});
+
+Route::get('pegawai/validasi', function() {
+	return View::make('pegawai.validasi');
+});
+
+Route::get('pegawai/datateknis', function() {
+	return View::make('pegawai.datateknis');
+});
+
+Route::get('pegawai/surat', function() {
+	return View::make('pegawai.lihat');
+});
